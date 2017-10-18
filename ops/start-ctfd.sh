@@ -14,7 +14,7 @@ docker rm -f nuaactf-db
 docker run -d --restart=always -e MYSQL_ROOT_PASSWORD=nuaactf-ctfd-root -e MYSQL_USER=ctfd -e MYSQL_PASSWORD=ctfd -v $(pwd)/data/mysql:/var/lib/mysql --name=nuaactf-db mariadb:10.2 
 
 docker rm -f nuaactf-redis
-docker run -d --name=nuaactf-redis redis:3.2
+docker run -d --restart=always --name=nuaactf-redis redis:3.2
 
 docker rm -f nuaactf-ctfd
 docker run -d --restart=always \
