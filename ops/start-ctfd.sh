@@ -21,7 +21,7 @@ docker run -d --restart=always \
     -e REDIS_URL=redis://redis:6379/0 \
     -e DATABASE_URL=mysql+pymysql://root:nuaactf-ctfd-root@db/ctfd \
     -v $(pwd)/data/CTFd/logs:/app/ctfd/CTFd/logs \
-    -v $(pwd)/data/CTFd/uploads:/app/ctfd/CTFd/uploads \
+    -v $(pwd)/data/CTFd/uploads:/app/ctfd/CTFd/CTFd/uploads \
     --link=nuaactf-db:db \
     --link=nuaactf-redis:redis \
     --name=nuaactf-ctfd \
