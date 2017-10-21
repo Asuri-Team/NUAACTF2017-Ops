@@ -5,19 +5,19 @@ basepath=$(cd `dirname $0`; pwd)
 cd $basepath/../challenges
 
 docker rm -f nuaactf-web-db
-docker run -d --restart=always --name=nuaactf-web-db \
+docker run -d --cpuset-cpus="3-5" --restart=always --name=nuaactf-web-db \
     -v $basepath/../data/web-db:/var/lib/mysql \
     -e MYSQL_ROOT_PASSWORD=nuaactf-web-r00t \
     mariadb:10.2
 
 docker rm -f nuaactf-web-fpm
-docker run -d --restart=always --name=nuaactf-web-fpm \
+docker run -d --cpuset-cpus="3-5" --restart=always --name=nuaactf-web-fpm \
     -v $(pwd)/web:/app \
     --link=nuaactf-web-db:db \
     asuri/nuaactf-php-mysql
 
 docker rm -f nuaactf-web-nginx
-docker run -d --restart=always --name=nuaactf-web-nginx \
+docker run -d --cpuset-cpus="3-5" --restart=always --name=nuaactf-web-nginx \
     -v $(pwd)/web:/app \
     -v $(pwd)/web/sign-in.conf:/etc/nginx/conf.d/sign-in.conf \
     -v $(pwd)/web/sqli_twice.conf:/etc/nginx/conf.d/sqli_twice.conf \
@@ -29,6 +29,11 @@ docker run -d --restart=always --name=nuaactf-web-nginx \
     nginx:1.12
 
 docker rm -f nuaactf-web-xss
-docker run -d --restart=always --name=nuaactf-web-xss \
+docker run -d --cpuset-cpus="3-5" --restart=always --name=nuaactf-web-xss \
     -p 8003:3000 \
     asuri/nuaactf-web-xss
+
+docker rm -f nuaactf-misc-pillow
+docker run -d --cpuset-cpus="3-5" --restart=always --name=nuaactf-misc-pillow \
+    -p 8080:8000 \
+    asuri/nuaactf-pillow

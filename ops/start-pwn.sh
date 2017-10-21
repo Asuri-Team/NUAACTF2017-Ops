@@ -9,13 +9,13 @@ mkdir -p traffic/string
 mkdir -p traffic/heap
 
 docker rm -f nuaactf-pwn-hello
-docker run -d -p 20001:20000 --name=nuaactf-pwn-hello -v $(pwd)/traffic/hello:/var/lib/tcpdump asuri/nuaactf-hello-pwn
+docker run -d --cpuset-cpus="7" -p 20001:20000 --name=nuaactf-pwn-hello -v $(pwd)/traffic/hello:/var/lib/tcpdump asuri/nuaactf-hello-pwn
 
 docker rm -f nuaactf-pwn-leave
-docker run -d -p 20002:20000 --name=nuaactf-pwn-leave -v $(pwd)/traffic/leave:/var/lib/tcpdump asuri/nuaactf-leave
+docker run -d --cpuset-cpus="7" -p 20002:20000 --name=nuaactf-pwn-leave -v $(pwd)/traffic/leave:/var/lib/tcpdump asuri/nuaactf-leave
 
 docker rm -f nuaactf-pwn-string
-docker run -d -p 20003:20000 --name=nuaactf-pwn-string -v $(pwd)/traffic/string:/var/lib/tcpdump asuri/nuaactf-string
+docker run -d --cpuset-cpus="6" -p 20003:20000 --name=nuaactf-pwn-string -v $(pwd)/traffic/string:/var/lib/tcpdump asuri/nuaactf-string
 
 docker rm -f nuaactf-pwn-heap-secret
-docker run -d -p 20004:20000 --name=nuaactf-pwn-heap-secret -v $(pwd)/traffic/heap:/var/lib/tcpdump asuri/nuaactf-heap-secret
+docker run -d --cpuset-cpus="6" -p 20004:20000 --name=nuaactf-pwn-heap-secret -v $(pwd)/traffic/heap:/var/lib/tcpdump asuri/nuaactf-heap-secret
