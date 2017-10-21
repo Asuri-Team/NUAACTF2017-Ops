@@ -3,4 +3,4 @@
 	url = https://github.com/Asuri-Team/CTFd.git
 [submodule "challenges"]
 	path = challenges
-	url = https://git.coding.net/xm1994/nuaactf2017.git
+	url = https://github.com/Asuri-Team/NUAACTF2017-Challenges.git
